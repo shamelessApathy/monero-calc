@@ -8,10 +8,7 @@ $url = "https://moneroblocks.info/api/get_stats";
 $info = file_get_contents($url);
 // Digest JSON into a php array (FLAG 2)
 $info = json_decode($info,2);
-$difficulty = $info['difficulty'];
-// Turning bytes into MH/s for easy reading
-$global_hashrate = $info['hashrate'];
-$global_hashrate_easy = floor($info['hashrate'] / 1000000);
+
 $total_circulation = $info['total_emission'];
 
 // Calclulate total supply, this is taken directly from cryptonote man pages
@@ -24,25 +21,11 @@ $divided = $base_reward * 1e-12;
 
 $actual_reward = $divided / 2;
 
-$total_circulation = substr($total_circulation,0, -12);
+echo $actual_reward;
 
-// Get Current Exchange Rate from API
 $currency_url = "https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=USD";
 $currency_info = file_get_contents($currency_url);
 $currency_info = json_decode($currency_info, 2);
-
-$data_array = array(
-		'total_supply'=> $total_supply,
-		'base_reward' => $base_reward,
-		'actual_reward' => $actual_reward,
-		'total_circulation' => $total_circulation,
-		'difficulty' => $difficulty,
-		'global_hashrate_easy' => $global_hashrate_easy,
-		'global_hashrate'=> $global_hashrate,
-		'exchange_rate' => $currency_info
-	);
-
-return $data_array;
 /*
 *
 * To calculate current block reward I am using this formula
@@ -57,3 +40,27 @@ return $data_array;
 
 
 
+
+
+
+
+## FOR DEBUGGING ## 
+## really need to start using xdebug instead ##
+
+?>
+<div style='color:white;width:80%; margin:0 auto; background:#333'>
+<h3 style='text-align:center;color:white;'> DEBUG SECTION </h3>
+<?php
+echo "<pre style='color:white;padding:5px;'>";
+print_r($info);
+echo "</pre>";
+
+echo "String Changed: ". $corrected;
+echo "<br>";
+var_dump($corrected);
+echo "<br>";
+var_dump($block_reward);
+echo "<br>";
+var_dump($currency_info);
+?>
+</div>
