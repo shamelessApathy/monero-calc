@@ -4,6 +4,7 @@
 Daily mining estimate =
 ( (your hashrate) * (current block reward) * 720 ) / (network hashrate)
 */
+
 $hashrate = $_POST['hash-speed'];
 $hash_unit = $_POST['hash-unit'];
 $power_draw = $_POST['power-draw'] ?? null;
@@ -39,28 +40,15 @@ $cash_profit_per_day = $exchange - $electric_per_day;
 $reward_per_day = round($reward_per_day,4);
 
 
+$send_back = array(
+		'kilowatts_per_day'=>$kilowatts_per_day,
+		'electric_cost'=> $electric_cost,
+		'electric_per_day' => $electric_per_day,
+		'cash_profit_per_day' => $cash_profit_per_day,
+		'reward_per_day'=>$reward_per_day
+	);
 
-
-?>
-<!-- ###### DEBUG SECTION ##### -->
-
-<div style='color:white;width:80%; margin:0 auto; background:#333'>
-<h3 style='text-align:center;color:white;'> DEBUG SECTION </h3>
-<?php
-echo "Initial Post Info <br>";
-echo "<pre style='color:white;padding:5px;'>";
-print_r($_POST);
-echo "</pre>";
-
-echo "<div style='width:95%; margin:0 auto; height:5px; background-color:white;'></div>";
+$send_back = json_encode($send_back);
+echo $send_back;
 
 ?>
-<h4>After Calculations</h4>
-
-
-
-<p>Reward Per Day: <?php echo $reward_per_day;?></p>
-<p>Cash Reward Per Day: <?php echo $exchange;?></p>
-<p>Profit: <?php echo $cash_profit_per_day;?></p>
-<p>Electric Per Day: <?php echo $electric_per_day;?></p>
-</div>

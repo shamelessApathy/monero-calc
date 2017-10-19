@@ -8,7 +8,7 @@ require_once('header.php');
 	<div class='col-md-4'>
 		<h4 style='text-align:center;'>Monero Calc</h4>
 		<div class='mcalc-container'>
-			<form action='/lib/mcalc.php' name='calculator' method='POST'>
+			<form name='calculator' id='calculator'>
 				<label>Monero to USD</label>
 				<input type='text' name='usd' value="<?php echo $data_array['exchange_rate']['USD'];?>"/>
 				<label>Hash Speed</label>
@@ -32,9 +32,19 @@ require_once('header.php');
 				<input type='text' name='difficulty' value="<?php echo $data_array['difficulty'];?>" readonly/>
 				<label>Global Hashrate <super>In bytes</super></label>
 				<input type='text' name='global-hashrate' value="<?php echo $data_array['global_hashrate'];?>" readonly />
-				<button type='submit'>Submit</button>
 			</form>
+				<button id='calc-submit'>Submit</button>
 		</div>
 	</div>
-	<div class='col-md-4'></div>
+	<div class='col-md-4'>
+		<div id='return-data'>
+			<p id='after-profit'></p>
+			<p id='after-electric'></p>
+			<p id='after-reward'></p>
+		</div>
+	</div>
 </div>
+
+
+<script src='/assets/js/jquery-3.1.2.js'></script>
+<script src='/assets/js/ajax.js'></script>
