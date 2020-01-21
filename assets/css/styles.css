@@ -29,3 +29,28 @@
 	font-size:8px;
 	color:red;
 }
+
+#debug-container {
+	color:white;
+	width:80%;
+	margin:0 auto;
+	background:#333;
+}
+
+.debug-h3 {
+	text-align:center;
+	color:white;
+}
+
+button {
+	background-color:#fff;
+	color:blue;
+	padding:5px;
+	border-radius:25px;
+}
+#resize-button {
+	position:relative;
+	display:block;
+	left:10px;
+	top:10px;
+}
